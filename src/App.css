@@ -3,12 +3,6 @@
   margin: 0 auto;
   padding: 1rem;
   text-align: center;
-  background: url("../src/assets/plaid-77426_1280.jpg") repeat;
-  background-position: center center;
-  background-size: auto;
-  min-height: 100vh;
-  height: auto;
-  margin: 0;
 }
 
 .navbar {
@@ -35,37 +29,13 @@
   align-items: center;
 }
 
+.article-card-link {
+  text-decoration: none;
+  display: block;
+}
+
 .article-card {
-  max-width: 90%;
-  max-width: 350px;
-  height: 450px;
-  display: flex;
-  flex-direction: column;
-  background-color: whitesmoke;
-  padding: 16px;
-  border-bottom: 1px solid;
-}
-
-.article-card h3 {
-  margin: 3px 0;
-}
-
-.article-card img {
-  width: 100%;
-}
-
-.article-card-actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 0px;
-  gap: 8px;
-}
-
-.article-card-actions svg {
-  width: 25px;
-  height: 25px;
-  vertical-align: middle;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {
