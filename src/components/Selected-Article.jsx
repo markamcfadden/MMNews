@@ -3,30 +3,46 @@ import { fetchArticleById, fetchCommentsByArticleId } from "../api";
 import Spinner from "react-bootstrap/Spinner";
 import ArticleCard from "./Article-card";
 import CommentCard from "./CommentCard";
+import Button from "react-bootstrap/Button";
 
 function SelectedArticle({ article_id }) {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [comments, setComments] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isArticleLoading, setIsArticleLoading] = useState(true);
+  const [isCommentsLoading, setIsCommentsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showComments, setShowComments] = useState(false);
 
   useEffect(() => {
     fetchArticleById(article_id)
       .then((articleFromApi) => {
         setSelectedArticle(articleFromApi);
-        return fetchCommentsByArticleId(article_id);
-      })
-      .then((commentsFromApi) => {
-        setComments(commentsFromApi);
-        setIsLoading(false);
+        setIsArticleLoading(false);
       })
       .catch((err) => {
         setError("Failed to load article, please try again");
-        setIsLoading(false);
+        setIsArticleLoading(false);
       });
   }, [article_id]);
 
-  if (isLoading) {
+  function showHideComments() {
+    if (!showComments) {
+      setShowComments(true);
+      setIsCommentsLoading(true);
+
+      return fetchCommentsByArticleId(article_id)
+        .then((commentsFromApi) => {
+          setComments(commentsFromApi);
+          setIsCommentsLoading(false);
+        })
+        .catch(() => {
+          setError("Failed to load comments, please try agin");
+        });
+    }
+    setShowComments(false);
+  }
+
+  if (isArticleLoading) {
     return <Spinner />;
   }
 
@@ -53,21 +69,34 @@ function SelectedArticle({ article_id }) {
         comment_count={selectedArticle.comment_count}
         body={selectedArticle.body}
       />
-      <div>
-        {comments.map((comment) => (
-          <CommentCard
-            key={comment.comment_id}
-            body={comment.body}
-            author={comment.author}
-            likes={comment.votes}
-            created={new Date(comment.created_at).toLocaleDateString("en-GB", {
-              day: "2-digit",
-              month: "long",
-              year: "numeric",
-            })}
-          />
-        ))}
-      </div>
+      <Button variant="secondary" onClick={showHideComments}>
+        {showComments ? "Hide Comments" : "Show Comments"}
+      </Button>
+
+      {showComments ? (
+        <div>
+          {isCommentsLoading ? (
+            <Spinner />
+          ) : (
+            comments.map((comment) => (
+              <CommentCard
+                key={comment.comment_id}
+                body={comment.body}
+                author={comment.author}
+                likes={comment.votes}
+                created={new Date(comment.created_at).toLocaleDateString(
+                  "en-GB",
+                  {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                  }
+                )}
+              />
+            ))
+          )}
+        </div>
+      ) : null}
     </div>
   );
 }
