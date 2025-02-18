@@ -1,20 +1,38 @@
+import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
 import LikeButton from "./LikeButton";
 import CommentCount from "./Comment-count";
 
-function ArticleCard({ title, author, created, likes, image, comment_count }) {
+function ArticleCard({
+  article_id,
+  title,
+  author,
+  created,
+  likes,
+  image,
+  comment_count,
+  body,
+}) {
   return (
-    <div className="article-card">
-      <img src={image}></img>
-      <h3>{title}</h3>
-      <p>
-        Author:{author} <br />
-        {created}
-      </p>
-      <div className="article-card-actions">
-        <LikeButton initialLikes={likes} />
-        <CommentCount commentCount={comment_count} />
-      </div>
-    </div>
+    <Link to={`/${article_id}`} className="article-card-link">
+      <Card style={{ width: "18rem" }} className="article-card">
+        <Card.Img variant="top" src={image} />
+        <Card.Body>
+          <Card.Title>{title}</Card.Title>
+          <Card.Text>
+            <small>Author: {author}</small>
+            <br />
+            <small>{created}</small>
+            <br />
+            {body ? <small>{body}</small> : null}
+          </Card.Text>
+          <div>
+            <LikeButton initialLikes={likes} />
+            <CommentCount commentCount={comment_count} />
+          </div>
+        </Card.Body>
+      </Card>
+    </Link>
   );
 }
 

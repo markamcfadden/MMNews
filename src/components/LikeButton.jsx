@@ -4,7 +4,8 @@ import { FaThumbsUp } from "react-icons/fa";
 function LikeButton({ initialLikes }) {
   const [likes, setLikes] = useState(initialLikes);
 
-  function handleLike() {
+  function handleLike(e) {
+    e.preventDefault();
     setLikes((prevLikes) => prevLikes + 1);
   }
 

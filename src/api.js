@@ -9,3 +9,17 @@ export const fetchArticles = () => {
     return response.data.articles;
   });
 };
+
+export const fetchArticleById = (article_id) => {
+  return tartanTalkApi.get(`/articles/${article_id}`).then((response) => {
+    return response.data.article;
+  });
+};
+
+export const fetchCommentsByArticleId = (article_id) => {
+  return tartanTalkApi
+    .get(`/articles/${article_id}/comments`)
+    .then((response) => {
+      return response.data.comments;
+    });
+};

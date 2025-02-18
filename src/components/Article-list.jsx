@@ -1,26 +1,39 @@
 import { useState, useEffect } from "react";
-
 import ArticleCard from "./Article-card";
 import { fetchArticles } from "../api";
+import Spinner from "react-bootstrap/Spinner";
 
 function ArticlesList() {
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchArticles()
       .then((articlesFromApi) => {
         setArticles(articlesFromApi);
+        setIsLoading(false);
       })
       .catch((err) => {
-        console.log("we have an error");
+        setError("Failed to load articles. Please try again");
+        setIsLoading(false);
       });
   }, []);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <div className="grid-container">
       {articles.map((article) => (
         <ArticleCard
           key={article.article_id}
+          article_id={article.article_id}
           title={article.title}
           author={article.author}
           created={new Date(article.created_at).toLocaleDateString("en-GB", {
