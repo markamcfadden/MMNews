@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import NavBar from "../components/Navbar";
 import SelectedArticle from "../components/Selected-Article";
 
 function ArticlePage() {
@@ -7,7 +7,7 @@ function ArticlePage() {
 
   return (
     <div>
-      <Navbar />
+      <NavBar />
       <SelectedArticle article_id={article_id} />
     </div>
   );
