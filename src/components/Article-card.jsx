@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import LikeButton from "./LikeButton";
 import CommentCount from "./Comment-count";
@@ -27,7 +28,7 @@ function ArticleCard({
             {body ? <small>{body}</small> : null}
           </Card.Text>
           <div>
-            <LikeButton initialLikes={likes} />
+            <LikeButton initialLikes={likes} article_id={article_id} />
             <CommentCount commentCount={comment_count} />
           </div>
         </Card.Body>

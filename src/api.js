@@ -23,3 +23,31 @@ export const fetchCommentsByArticleId = (article_id) => {
       return response.data.comments;
     });
 };
+
+export const fetchUsers = (username) => {
+  return tartanTalkApi.get("/users").then((response) => {
+    const users = response.data.users;
+    const user = users.find((user) => user.username === username);
+    if (user) {
+      return user;
+    } else {
+      throw new Error();
+    }
+  });
+};
+
+export const postVote = (article_id) => {
+  return tartanTalkApi
+    .patch(`/articles/${article_id}`, { inc_votes: 1 })
+    .then((response) => {
+      return response.data.updatedArticle;
+    });
+};
+
+export const removeVote = (article_id) => {
+  return tartanTalkApi
+    .patch(`/articles/${article_id}`, { inc_votes: -1 })
+    .then((response) => {
+      return response.data.updatedArticle;
+    });
+};
