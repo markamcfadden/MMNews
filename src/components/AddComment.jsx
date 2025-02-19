@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import { postComment } from "../api";
 
-function AddComment({ article_id }) {
+function AddComment({ article_id, setComments }) {
   const { loggedInUser } = useContext(UserContext);
   const [comment, setComment] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
@@ -34,13 +34,15 @@ function AddComment({ article_id }) {
     const commentToPost = { username: loggedInUser.username, body: comment };
 
     postComment(article_id, commentToPost)
-      .then(() => {
+      .then((newComment) => {
         setComment("");
         setIsExpanded(false);
         setSuccessMessage("Comment posted successfully");
         setIsSubmitting(false);
 
-        setTimeout(() => setSuccessMessage(""), 4000);
+        setComments((prev) => [newComment, ...prev]);
+
+        setTimeout(() => setSuccessMessage(""), 3000);
       })
       .catch(() => {
         setError("Failed to post comment. Please try again");
@@ -69,7 +71,7 @@ function AddComment({ article_id }) {
             variant="secondary"
             type="submit"
             onClick={handleSubmit}
-            disabled={comment.length < 1}
+            disabled={comment.length < 1 || isSubmitting}
           >
             Comment
           </Button>

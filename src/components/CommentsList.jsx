@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CommentCard from "./CommentCard";
+import AddComment from "./AddComment";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 import { fetchCommentsByArticleId } from "../api";
@@ -33,6 +34,7 @@ function CommentsList({ article_id }) {
 
   return (
     <div>
+      <AddComment article_id={article_id} setComments={setComments} />
       <Button variant="secondary" onClick={showHideComments}>
         {showComments ? "Hide Comments" : "Show Comments"}
       </Button>
@@ -47,6 +49,8 @@ function CommentsList({ article_id }) {
             comments.map((comment) => (
               <CommentCard
                 key={comment.comment_id}
+                setComments={setComments}
+                comment_id={comment.comment_id}
                 body={comment.body}
                 author={comment.author}
                 likes={comment.votes}

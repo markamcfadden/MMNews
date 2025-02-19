@@ -4,7 +4,11 @@ import { UserContext } from "../UserContext";
 import { useContext } from "react";
 
 function NavBar() {
-  const { loggedInUser } = useContext(UserContext);
+  const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+
+  function handleLogout() {
+    setLoggedInUser(null);
+  }
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -23,9 +27,17 @@ function NavBar() {
               Home
             </Nav.Link>
           </Nav>
-          <Button variant="secondary" as={Link} to="/login">
-            Login
-          </Button>
+          {loggedInUser ? (
+            <Link to="/login">
+              <Button variant="secondary" onClick={handleLogout}>
+                LogOut
+              </Button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <Button variant="secondary">Login</Button>
+            </Link>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
