@@ -21,11 +21,11 @@ function ArticleCard({
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Card.Text>
-            <small>Author: {author}</small>
+            Author: {author}
             <br />
-            <small>{created}</small>
+            {created}
             <br />
-            {body ? <small>{body}</small> : null}
+            {body ? body : null}
           </Card.Text>
           <div>
             <LikeButton initialLikes={likes} article_id={article_id} />
