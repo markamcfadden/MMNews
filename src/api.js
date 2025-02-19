@@ -51,3 +51,11 @@ export const removeVote = (article_id) => {
       return response.data.updatedArticle;
     });
 };
+
+export const postComment = (article_id, commentToPost) => {
+  return tartanTalkApi
+    .post(`/articles/${article_id}/comments`, commentToPost)
+    .catch(() => {
+      throw err;
+    });
+};
