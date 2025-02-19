@@ -6,7 +6,6 @@ import { useContext } from "react";
 function NavBar() {
   const { loggedInUser } = useContext(UserContext);
 
-  console.log(loggedInUser, "hello");
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container className="nav-container">
