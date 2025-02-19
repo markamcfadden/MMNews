@@ -59,3 +59,9 @@ export const postComment = (article_id, commentToPost) => {
       throw err;
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return tartanTalkApi.delete(`/comments/${comment_id}`).catch((err) => {
+    throw err;
+  });
+};
