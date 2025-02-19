@@ -55,6 +55,9 @@ export const removeVote = (article_id) => {
 export const postComment = (article_id, commentToPost) => {
   return tartanTalkApi
     .post(`/articles/${article_id}/comments`, commentToPost)
+    .then((response) => {
+      return response.data.comment;
+    })
     .catch(() => {
       throw err;
     });
