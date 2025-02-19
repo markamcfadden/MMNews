@@ -1,7 +1,15 @@
 import Card from "react-bootstrap/Card";
 import LikeButton from "./LikeButton";
+import TrashCan from "./TrashCan";
 
-function CommentCard({ body, author, likes, created }) {
+function CommentCard({
+  setComments,
+  comment_id,
+  body,
+  author,
+  likes,
+  created,
+}) {
   return (
     <Card style={{ width: "18rem" }} className="article-card">
       <Card.Body>
@@ -13,6 +21,11 @@ function CommentCard({ body, author, likes, created }) {
           <small>{created}</small>
         </Card.Text>
         <LikeButton initialLikes={likes} />
+        <TrashCan
+          author={author}
+          comment_id={comment_id}
+          setComments={setComments}
+        />
       </Card.Body>
     </Card>
   );
