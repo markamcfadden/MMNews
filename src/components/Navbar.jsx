@@ -11,7 +11,7 @@ function NavBar() {
       <Container className="nav-container">
         <Navbar.Brand className="nav-title">Tartan Talk</Navbar.Brand>
         {loggedInUser ? (
-          <div class="user-info">
+          <div className="user-info">
             <img src={loggedInUser.avatar_url} className="nav-avatar" />
             <h4 className="nav-msg">Welcome {loggedInUser.username}</h4>
           </div>
