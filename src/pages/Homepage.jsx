@@ -4,13 +4,13 @@ import Searchbar from "../components/Searchbar";
 import { useParams } from "react-router-dom";
 
 function Homepage() {
-  const { selectedTopic } = useParams();
+  const { query } = useParams();
 
   return (
     <div>
       <NavBar />
       <Searchbar />
-      <ArticlesList topic={selectedTopic} />
+      <ArticlesList query={query} />
     </div>
   );
 }

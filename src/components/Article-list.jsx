@@ -3,13 +3,13 @@ import ArticleCard from "./Article-card";
 import { fetchArticles } from "../api";
 import Spinner from "react-bootstrap/Spinner";
 
-function ArticlesList({ topic }) {
+function ArticlesList({ query }) {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchArticles(topic)
+    fetchArticles(query)
       .then((articlesFromApi) => {
         setArticles(articlesFromApi);
         setIsLoading(false);
@@ -18,7 +18,7 @@ function ArticlesList({ topic }) {
         setError("Failed to load articles. Please try again");
         setIsLoading(false);
       });
-  }, [topic]);
+  }, [query]);
 
   if (isLoading) {
     return <Spinner />;
