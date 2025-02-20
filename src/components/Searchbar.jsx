@@ -18,6 +18,7 @@ function Searchbar() {
   }, []);
 
   function handleFilters(e) {
+    e.preventDefault();
     let sort_by;
     if (selectedSortBy === "Date") {
       sort_by = "created_at";
@@ -33,13 +34,17 @@ function Searchbar() {
     } else if (selectedOrder === "Descending") {
       order = "desc";
     }
-    e.preventDefault();
 
-    if (selectedTopic === "All Topics") {
-      navigate(`/sort_by=${sort_by}&order=${order}`);
-    } else {
-      navigate(`/topic=${selectedTopic}&sort_by=${sort_by}&order=${order}`);
+    const params = new URLSearchParams();
+
+    if (selectedTopic && selectedTopic !== "All Topics") {
+      params.append("topic", selectedTopic);
     }
+
+    params.append("sort_by", sort_by);
+    params.append("order", order);
+
+    navigate(`/?${params.toString()}`);
   }
 
   return (
