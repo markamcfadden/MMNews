@@ -11,11 +11,11 @@ function NavBar() {
   }
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container className="nav-container">
-        <Navbar.Brand className="nav-title">Tartan Talk</Navbar.Brand>
+    <Navbar expand="lg" className="bg-body-tertiary sticky-top">
+      <Container>
+        <Navbar.Brand>Tartan Talk</Navbar.Brand>
         {loggedInUser ? (
-          <div className="user-info">
+          <div className="nav-user-info">
             <img src={loggedInUser.avatar_url} className="nav-avatar" />
             <h4 className="nav-msg">Welcome {loggedInUser.username}</h4>
           </div>
@@ -27,17 +27,19 @@ function NavBar() {
               Home
             </Nav.Link>
           </Nav>
-          {loggedInUser ? (
-            <Link to="/login">
-              <Button variant="secondary" onClick={handleLogout}>
-                LogOut
-              </Button>
-            </Link>
-          ) : (
-            <Link to="/login">
-              <Button variant="secondary">Login</Button>
-            </Link>
-          )}
+          <Nav>
+            {loggedInUser ? (
+              <Link to="/login">
+                <Button variant="secondary" onClick={handleLogout}>
+                  LogOut
+                </Button>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <Button variant="secondary">Login</Button>
+              </Link>
+            )}
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
