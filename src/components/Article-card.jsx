@@ -13,7 +13,7 @@ function ArticleCard({
 }) {
   return (
     <Link to={`/${article_id}`} className="article-card-link">
-      <Card style={{ width: "18rem" }} className="article-card">
+      <Card className="article-card">
         <Card.Img variant="top" src={image} />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
@@ -22,8 +22,8 @@ function ArticleCard({
             <br />
             {created}
             <br />
-            {body ? body : null}
           </Card.Text>
+          <Card.Text className="article-body">{body ? body : null}</Card.Text>
           <div>
             <LikeButton initialLikes={likes} article_id={article_id} />
           </div>
