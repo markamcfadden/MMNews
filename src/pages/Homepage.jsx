@@ -1,16 +1,17 @@
 import ArticlesList from "../components/Article-list";
 import NavBar from "../components/Navbar";
 import Searchbar from "../components/Searchbar";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 function Homepage() {
-  const { query } = useParams();
+  const [searchParams] = useSearchParams();
+  const queryParams = Object.fromEntries(searchParams.entries());
 
   return (
     <div>
       <NavBar />
       <Searchbar />
-      <ArticlesList query={query} />
+      <ArticlesList params={queryParams} />
     </div>
   );
 }
