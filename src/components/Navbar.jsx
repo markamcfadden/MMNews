@@ -14,12 +14,14 @@ function NavBar() {
     <Navbar expand="lg" className="bg-body-tertiary sticky-top">
       <Container>
         <Navbar.Brand>Tartan Talk</Navbar.Brand>
-        {loggedInUser ? (
-          <div className="nav-user-info">
-            <img src={loggedInUser.avatar_url} className="nav-avatar" />
-            <h4 className="nav-msg">Welcome {loggedInUser.username}</h4>
-          </div>
-        ) : null}
+        <div className="nav-user-info-container">
+          {loggedInUser ? (
+            <div className="nav-user-info">
+              <img src={loggedInUser.avatar_url} className="nav-avatar" />
+              <h4 className="nav-msg">Welcome {loggedInUser.username}</h4>
+            </div>
+          ) : null}
+        </div>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

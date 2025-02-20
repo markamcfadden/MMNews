@@ -5,6 +5,13 @@
   text-align: center;
 }
 
+.nav-user-info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
 .navbar {
   width: 100%;
 }
@@ -12,6 +19,15 @@
 .navbar-brand {
   font-size: 1.5rem;
   transition: font-size 0.3s ease;
+}
+
+.nav-avatar {
+  width: 50px;
+  height: 50px;
+}
+
+.nav-msg {
+  font-size: 12px;
 }
 
 @media (min-width: 768px) {
