@@ -4,8 +4,9 @@ const tartanTalkApi = axios.create({
   baseURL: "https://mnn-jvu9.onrender.com/api",
 });
 
-export const fetchArticles = () => {
-  return tartanTalkApi.get("/articles").then((response) => {
+export const fetchArticles = (topic) => {
+  const endpoint = topic ? `articles?topic=${topic}` : "/articles";
+  return tartanTalkApi.get(endpoint).then((response) => {
     return response.data.articles;
   });
 };
@@ -66,5 +67,11 @@ export const postComment = (article_id, commentToPost) => {
 export const deleteComment = (comment_id) => {
   return tartanTalkApi.delete(`/comments/${comment_id}`).catch((err) => {
     throw err;
+  });
+};
+
+export const fetchTopics = () => {
+  return tartanTalkApi.get("/topics").then((response) => {
+    return response.data.topics;
   });
 };
