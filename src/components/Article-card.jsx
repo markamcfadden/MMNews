@@ -12,7 +12,7 @@ function ArticleCard({
   body,
 }) {
   return (
-    <Link to={`/${article_id}`} className="article-card-link">
+    <Link to={`/article/${article_id}`} className="article-card-link">
       <Card className="article-card">
         <Card.Img variant="top" src={image} />
         <Card.Body>
