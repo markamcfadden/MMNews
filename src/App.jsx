@@ -5,6 +5,7 @@ import "./App.css";
 import Homepage from "./pages/Homepage";
 import ArticlePage from "./pages/ArticlePage";
 import LoginPage from "./pages/LoginPage";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/article/:article_id" element={<ArticlePage />}></Route>
-          <Route path="/:query" element={<Homepage />}></Route>
+          <Route path="/search/" element={<Homepage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </UseProvider>
     </div>
