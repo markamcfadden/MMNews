@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function Searchbar() {
   const [topics, setTopics] = useState([]);
-  const [selectedTopic, setSelectedTopic] = useState("");
+  const [selectedTopic, setSelectedTopic] = useState("All Topics");
   const [selectedSortBy, setSelectedSortBy] = useState("Date");
   const [selectedOrder, setSelectedOrder] = useState("Descending");
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ function Searchbar() {
     params.append("sort_by", sort_by);
     params.append("order", order);
 
-    navigate(`/?${params.toString()}`);
+    navigate(`/search?${params.toString()}`);
   }
 
   return (
@@ -57,7 +57,6 @@ function Searchbar() {
             value={selectedTopic}
             onChange={(e) => setSelectedTopic(e.target.value)}
           >
-            <option>Select Topic</option>
             <option>All Topics</option>
             {topics.map((topic) => {
               return <option key={topic}>{topic}</option>;

@@ -3,10 +3,9 @@ import { fetchArticleById } from "../api";
 import Spinner from "react-bootstrap/Spinner";
 import ArticleCard from "./Article-card";
 
-function SelectedArticle({ article_id }) {
+function SelectedArticle({ article_id, setErrorCode, setErrorMessage }) {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [isArticleLoading, setIsArticleLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsArticleLoading(true);
@@ -16,17 +15,14 @@ function SelectedArticle({ article_id }) {
         setIsArticleLoading(false);
       })
       .catch((err) => {
-        setError("Failed to load article, please try again");
+        setErrorCode(err.response.status);
+        setErrorMessage(err.response.data.msg);
         setIsArticleLoading(false);
       });
   }, [article_id]);
 
   if (isArticleLoading) {
     return <Spinner />;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
   }
 
   return (

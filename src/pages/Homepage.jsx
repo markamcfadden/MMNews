@@ -6,7 +6,6 @@ import { useSearchParams } from "react-router-dom";
 function Homepage() {
   const [searchParams] = useSearchParams();
   const queryParams = Object.fromEntries(searchParams.entries());
-
   return (
     <div>
       <NavBar />
