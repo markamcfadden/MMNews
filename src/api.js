@@ -4,8 +4,8 @@ const tartanTalkApi = axios.create({
   baseURL: "https://mnn-jvu9.onrender.com/api",
 });
 
-export const fetchArticles = (topic) => {
-  const endpoint = topic ? `articles?topic=${topic}` : "/articles";
+export const fetchArticles = (query) => {
+  const endpoint = query ? `articles?${query}` : "/articles";
   return tartanTalkApi.get(endpoint).then((response) => {
     return response.data.articles;
   });
