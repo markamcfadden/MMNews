@@ -12,7 +12,7 @@ function App() {
       <UseProvider>
         <Routes>
           <Route path="/" element={<Homepage />}></Route>
-          <Route path="/:selectedTopic" element={<Homepage />}></Route>
+          <Route path="/:query" element={<Homepage />}></Route>
           <Route path="/:article_id" element={<ArticlePage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
         </Routes>
