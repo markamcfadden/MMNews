@@ -81,10 +81,10 @@ function Searchbar() {
             <option>Ascending</option>
           </Form.Select>
         </Form.Group>
+        <Button variant="secondary" onClick={handleFilters}>
+          Apply filters
+        </Button>
       </Card.Body>
-      <Button variant="secondary" onClick={handleFilters}>
-        Apply filters
-      </Button>
     </Card>
   );
 }
