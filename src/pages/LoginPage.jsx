@@ -28,23 +28,28 @@ function LoginPage() {
   return (
     <div>
       <NavBar />
-      <Form onSubmit={setUser}>
-        <Form.Group>
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="username"
-            placeholder="Enter Username"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-          />
-        </Form.Group>
-        <Button variant="secondary" type="submit">
-          Login
-        </Button>
-      </Form>
-      {error ? <p>{error}</p> : null}
+      <div className="sign-in-container">
+        <div className="sign-in-form">
+          <h2>Login</h2>
+          <Form onSubmit={setUser}>
+            <Form.Group>
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="username"
+                placeholder="Enter Username"
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+              />
+            </Form.Group>
+            <Button variant="secondary" type="submit">
+              Login
+            </Button>
+          </Form>
+          {error ? <p>{error}</p> : null}
+        </div>
+      </div>
     </div>
   );
 }
