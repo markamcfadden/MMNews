@@ -11,21 +11,23 @@ function CommentCard({
   created,
 }) {
   return (
-    <Card style={{ width: "18rem" }} className="article-card">
+    <Card className="comment-card">
       <Card.Body>
-        <Card.Text>
-          <small>{body}</small>
-          <br />
-          <small>Author: {author}</small>
-          <br />
-          <small>{created}</small>
-        </Card.Text>
-        <LikeButton initialLikes={likes} />
-        <TrashCan
-          author={author}
-          comment_id={comment_id}
-          setComments={setComments}
-        />
+        <Card.Text className="comment-body">{body}</Card.Text>
+        <div className="article-meta">
+          <div className="meta-box">{author}</div>
+          <div className="meta-box"> {created}</div>
+          <div className="meta-box">
+            <LikeButton initialLikes={likes} />
+          </div>
+          <div className="meta-box">
+            <TrashCan
+              author={author}
+              comment_id={comment_id}
+              setComments={setComments}
+            />
+          </div>
+        </div>
       </Card.Body>
     </Card>
   );
