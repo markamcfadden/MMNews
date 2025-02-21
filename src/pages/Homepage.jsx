@@ -9,8 +9,14 @@ function Homepage() {
   return (
     <div>
       <NavBar />
-      <Searchbar />
-      <ArticlesList params={queryParams} />
+      <div className="homepage-main">
+        <div className="homepage-search">
+          <Searchbar />
+        </div>
+        <div className="homepage-list">
+          <ArticlesList params={queryParams} />
+        </div>
+      </div>
     </div>
   );
 }
