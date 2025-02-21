@@ -5,11 +5,6 @@
   text-align: center;
 }
 
-.navbar {
-  width: 100%;
-  margin-bottom: 10px;
-}
-
 .nav-cont {
   border: solid;
 }
@@ -142,12 +137,17 @@
   align-items: center;
 }
 
-.article-card {
+.article-card,
+.comment-card {
   margin: 0 auto;
   width: 100%;
   max-width: 450px;
   min-height: 550px;
   margin-bottom: 10px;
+}
+
+.comment-card {
+  min-height: 300px;
 }
 
 .article-card img {
@@ -173,4 +173,33 @@
 
 .ls-filter-box .form-select {
   margin-bottom: 20px;
+}
+
+.sign-in-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("./assets/plaid-77426_1280.jpg");
+  height: 100vh;
+}
+
+.sign-in-form {
+  border: 2px solid;
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-in-form .form-label {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.sign-in-form .form-control {
+  margin-bottom: 15px;
 }
