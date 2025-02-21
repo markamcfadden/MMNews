@@ -11,17 +11,9 @@ function NavBar() {
   }
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary sticky-top">
+    <Navbar expand="lg" className="bg-body-tertiary sticky-top navbar">
       <Container>
-        <Navbar.Brand>Tartan Talk</Navbar.Brand>
-        <div className="nav-user-info-container">
-          {loggedInUser ? (
-            <div className="nav-user-info">
-              <img src={loggedInUser.avatar_url} className="nav-avatar" />
-              <h4 className="nav-msg">Welcome {loggedInUser.username}</h4>
-            </div>
-          ) : null}
-        </div>
+        <Navbar.Brand className="mx-auto ">TARTAN TALK</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -44,6 +36,14 @@ function NavBar() {
           </Nav>
         </Navbar.Collapse>
       </Container>
+      <div className="nav-user-info-container">
+        {loggedInUser ? (
+          <div className="nav-user-info">
+            <img src={loggedInUser.avatar_url} className="nav-avatar" />
+            <h4 className="nav-msg">Welcome {loggedInUser.username}</h4>
+          </div>
+        ) : null}
+      </div>
     </Navbar>
   );
 }

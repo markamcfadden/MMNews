@@ -37,8 +37,9 @@ function LikeButton({ initialLikes, article_id }) {
   }
 
   return (
-    <button onClick={handleLike}>
-      <FaThumbsUp /> {likes}
+    <button onClick={handleLike} className="like-box">
+      <FaThumbsUp />
+      <span>{likes}</span>
       {error ? <p>{error}</p> : null}
     </button>
   );

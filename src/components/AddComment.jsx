@@ -51,7 +51,7 @@ function AddComment({ article_id, setComments }) {
   }
 
   return (
-    <Form>
+    <Form className="comment-box">
       <InputGroup>
         <Form.Control
           as="textarea"
