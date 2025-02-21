@@ -11,21 +11,23 @@ function ArticlePage() {
   const [errorMessage, setErrorMessage] = useState("");
 
   return (
-    <>
+    <div>
       <NavBar />
-      {!errorCode && !errorMessage ? (
-        <div>
-          <SelectedArticle
-            article_id={article_id}
-            setErrorCode={setErrorCode}
-            setErrorMessage={setErrorMessage}
-          />
-          <CommentsList article_id={article_id} />
-        </div>
-      ) : (
-        <ErrorComponent errorCode={errorCode} errorMessage={errorMessage} />
-      )}
-    </>
+      <div>
+        {!errorCode && !errorMessage ? (
+          <div>
+            <SelectedArticle
+              article_id={article_id}
+              setErrorCode={setErrorCode}
+              setErrorMessage={setErrorMessage}
+            />
+            <CommentsList article_id={article_id} />
+          </div>
+        ) : (
+          <ErrorComponent errorCode={errorCode} errorMessage={errorMessage} />
+        )}
+      </div>
+    </div>
   );
 }
 
