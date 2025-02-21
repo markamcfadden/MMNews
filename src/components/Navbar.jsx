@@ -12,38 +12,38 @@ function NavBar() {
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary sticky-top navbar">
-      <Container>
-        <Navbar.Brand className="mx-auto ">TARTAN TALK</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">
-              Home
-            </Nav.Link>
-          </Nav>
-          <Nav>
-            {loggedInUser ? (
-              <Link to="/login">
-                <Button variant="secondary" onClick={handleLogout}>
-                  LogOut
-                </Button>
-              </Link>
-            ) : (
-              <Link to="/login">
-                <Button variant="secondary">Login</Button>
-              </Link>
-            )}
-          </Nav>
-        </Navbar.Collapse>
+      <Container className="nav-cont">
+        <Navbar.Brand className>TARTAN TALK</Navbar.Brand>
+        <div className="nav-user-info-container">
+          {loggedInUser ? (
+            <div className="nav-user-info">
+              <img src={loggedInUser.avatar_url} className="nav-avatar" />
+              <h4 className="nav-msg">Welcome {loggedInUser.username}</h4>
+            </div>
+          ) : null}
+        </div>
       </Container>
-      <div className="nav-user-info-container">
-        {loggedInUser ? (
-          <div className="nav-user-info">
-            <img src={loggedInUser.avatar_url} className="nav-avatar" />
-            <h4 className="nav-msg">Welcome {loggedInUser.username}</h4>
-          </div>
-        ) : null}
-      </div>
+      <Navbar.Toggle aria-controls="navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="me-auto">
+          <Nav.Link as={Link} to="/">
+            Home
+          </Nav.Link>
+        </Nav>
+        <Nav>
+          {loggedInUser ? (
+            <Link to="/login">
+              <Button variant="secondary" onClick={handleLogout}>
+                LogOut
+              </Button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <Button variant="secondary">Login</Button>
+            </Link>
+          )}
+        </Nav>
+      </Navbar.Collapse>
     </Navbar>
   );
 }

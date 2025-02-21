@@ -64,7 +64,7 @@ function Searchbar() {
             onClick={() => setOpen(!open)}
             aria-controls="searchbar-collapse"
             aria-expanded={open}
-            className="d-lg-none mb-3 secondary"
+            className="d-xl-none mb-3 secondary"
           >
             Filter Articles
           </Button>
