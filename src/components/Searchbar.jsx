@@ -1,4 +1,4 @@
-import { Card, Form, Button, Collapse } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { fetchTopics } from "../api";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ function Searchbar() {
   const [selectedTopic, setSelectedTopic] = useState("All Topics");
   const [selectedSortBy, setSelectedSortBy] = useState("Date");
   const [selectedOrder, setSelectedOrder] = useState("Descending");
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
 
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ function Searchbar() {
         <>
           <Button
             variant="secondary"
-            onClick={() => setOpen(!open)}
+            onClick={() => setIsOpen(!isOpen)}
             aria-controls="searchbar-collapse"
             aria-expanded={open}
             className="d-xl-none mb-3 secondary"
@@ -69,86 +69,83 @@ function Searchbar() {
             Filter Articles
           </Button>
 
-          <Collapse in={open}>
-            <Card>
-              <Card.Body>
-                <Form.Group>
-                  <Form.Label>Filter by topic</Form.Label>
-                  <Form.Select
-                    value={selectedTopic}
-                    onChange={(e) => setSelectedTopic(e.target.value)}
-                  >
-                    <option>All Topics</option>
-                    {topics.map((topic) => {
-                      return <option key={topic}>{topic}</option>;
-                    })}
-                  </Form.Select>
-                  <Form.Label>Sort By</Form.Label>
-                  <Form.Select
-                    value={selectedSortBy}
-                    onChange={(e) => setSelectedSortBy(e.target.value)}
-                  >
-                    <option>Date</option>
-                    <option>Comments</option>
-                    <option>Votes</option>
-                  </Form.Select>
-                  <Form.Label>Order</Form.Label>
-                  <Form.Select
-                    value={selectedOrder}
-                    onChange={(e) => setSelectedOrder(e.target.value)}
-                  >
-                    <option>Descending</option>
-                    <option>Ascending</option>
-                  </Form.Select>
-                </Form.Group>
-                <Button variant="secondary" onClick={handleFilters}>
-                  Apply filters
-                </Button>
-              </Card.Body>
-            </Card>
-          </Collapse>
+          {isOpen ? (
+            <div className="filter-dropdown">
+              <form onSubmit={handleFilters}>
+                <label>Filter by topic</label>
+                <select
+                  value={selectedTopic}
+                  onChange={(e) => setSelectedTopic(e.target.value)}
+                >
+                  <option>All topics</option>
+                  {topics.map((topic) => {
+                    return <option key={topic}>{topic}</option>;
+                  })}
+                </select>
+                <label>Sort By</label>
+                <select
+                  value={selectedSortBy}
+                  onChange={(e) => setSelectedSortBy(e.target.value)}
+                >
+                  <option>Date</option>
+                  <option>Comments</option>
+                  <option>Votes</option>
+                </select>
+                <label>Order</label>
+                <select
+                  value={selectedOrder}
+                  onChange={(e) => setSelectedOrder(e.target.value)}
+                >
+                  <option>Descending</option>
+                  <option>Ascending</option>
+                </select>
+
+                <button type="submit">Apply Filters</button>
+              </form>
+            </div>
+          ) : null}
         </>
       ) : (
-        <Card className="ls-filter-box">
-          <Card.Body>
-            <Form.Group className="ls-filter-group">
-              <Form.Label>Filter by topic</Form.Label>
-              <Form.Select
-                value={selectedTopic}
-                onChange={(e) => setSelectedTopic(e.target.value)}
-              >
-                <option>All Topics</option>
-                {topics.map((topic) => {
-                  return <option key={topic}>{topic}</option>;
-                })}
-              </Form.Select>
-              <Form.Label>Sort By</Form.Label>
-              <Form.Select
-                value={selectedSortBy}
-                onChange={(e) => setSelectedSortBy(e.target.value)}
-              >
-                <option>Date</option>
-                <option>Comments</option>
-                <option>Votes</option>
-              </Form.Select>
-              <Form.Label>Order</Form.Label>
-              <Form.Select
-                value={selectedOrder}
-                onChange={(e) => setSelectedOrder(e.target.value)}
-              >
-                <option>Descending</option>
-                <option>Ascending</option>
-              </Form.Select>
-            </Form.Group>
-            <Button
-              variant="secondary"
-              className="ls-btn-apply-filter"
-              onClick={handleFilters}
+        <div className="filter-box">
+          <form onSubmit={handleFilters}>
+            <label className="filter-box-label">Filter by topic</label>
+            <select
+              className="filter-box-select"
+              value={selectedTopic}
+              onChange={(e) => setSelectedTopic(e.target.value)}
             >
-              Apply filters
+              <option>All Topics</option>
+              {topics.map((topic) => {
+                return <option key={topic}>{topic}</option>;
+              })}
+            </select>
+
+            <label className="filter-box-label">Sort By</label>
+            <select
+              className="filter-box-select"
+              value={selectedSortBy}
+              onChange={(e) => setSelectedSortBy(e.target.value)}
+            >
+              <option>Date</option>
+              <option>Comments</option>
+              <option>Votes</option>
+            </select>
+
+            <label className="filter-box-label">Order</label>
+            <select
+              className="filter-box-select"
+              value={selectedOrder}
+              onChange={(e) => setSelectedOrder(e.target.value)}
+            >
+              <option>Descending</option>
+              <option>Ascending</option>
+            </select>
+
+            <Button className="filter-box-btn" variant="secondary">
+              Apply Filters
             </Button>
-          </Card.Body>
-        </Card>
+          </form>
+        </div>
       )}
     </div>
   );

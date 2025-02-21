@@ -11,22 +11,24 @@ function NavBar() {
   }
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary sticky-top navbar">
+    <Navbar expand={false} className="navbar">
       <Container className="nav-cont">
-        <Navbar.Brand className>TARTAN TALK</Navbar.Brand>
+        <Navbar.Brand>TARTAN TALK</Navbar.Brand>
         <div className="nav-user-info-container">
           {loggedInUser ? (
             <div className="nav-user-info">
-              <img src={loggedInUser.avatar_url} className="nav-avatar" />
+              <div className="nav-avatar-container">
+                <img src={loggedInUser.avatar_url} className="nav-avatar" />{" "}
+              </div>
               <h4 className="nav-msg">Welcome {loggedInUser.username}</h4>
             </div>
           ) : null}
         </div>
       </Container>
-      <Navbar.Toggle aria-controls="navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
-          <Nav.Link as={Link} to="/">
+      <Navbar.Toggle />
+      <Navbar.Collapse>
+        <Nav>
+          <Nav.Link className="home-link" as={Link} to="/">
             Home
           </Nav.Link>
         </Nav>
