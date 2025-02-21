@@ -42,7 +42,7 @@ function CommentsList({ article_id }) {
       {error ? <p>{error}</p> : null}
 
       {showComments ? (
-        <div>
+        <div className="grid-container">
           {isLoading ? (
             <Spinner />
           ) : (
