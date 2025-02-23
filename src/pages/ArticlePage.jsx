@@ -4,6 +4,7 @@ import NavBar from "../components/Navbar";
 import SelectedArticle from "../components/Selected-Article";
 import CommentsList from "../components/CommentsList";
 import ErrorComponent from "../components/ErrorComponent";
+import Footer from "../components/Footer";
 
 function ArticlePage() {
   const { article_id } = useParams();
@@ -13,7 +14,7 @@ function ArticlePage() {
   return (
     <div>
       <NavBar />
-      <div>
+      <div className="article-page">
         {!errorCode && !errorMessage ? (
           <div>
             <SelectedArticle
@@ -27,6 +28,7 @@ function ArticlePage() {
           <ErrorComponent errorCode={errorCode} errorMessage={errorMessage} />
         )}
       </div>
+      <Footer />
     </div>
   );
 }
