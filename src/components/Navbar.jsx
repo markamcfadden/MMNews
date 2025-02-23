@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import { UserContext } from "../UserContext";
 import { useContext } from "react";
 
@@ -11,42 +10,55 @@ function NavBar() {
   }
 
   return (
-    <Navbar expand={false} className="navbar">
-      <Container className="nav-cont">
-        <Navbar.Brand>TARTAN TALK</Navbar.Brand>
-        <div className="nav-user-info-container">
-          {loggedInUser ? (
-            <div className="nav-user-info">
-              <div className="nav-avatar-container">
-                <img src={loggedInUser.avatar_url} className="nav-avatar" />{" "}
-              </div>
-              <h4 className="nav-msg">Welcome {loggedInUser.username}</h4>
-            </div>
-          ) : null}
+    <div className="navbar">
+      <div className="header-nav">
+        <h1>TartanTalk</h1>
+      </div>
+      {loggedInUser ? (
+        <div className="nav-user-info">
+          <div className="avatar-container">
+            <img src={loggedInUser.avatar_url} className="user-avatar" />
+          </div>
+          <div className="nav-msg-container">
+            <p>Welcome {loggedInUser.username}</p>
+          </div>
         </div>
-      </Container>
-      <Navbar.Toggle />
-      <Navbar.Collapse>
-        <Nav>
-          <Nav.Link className="home-link" as={Link} to="/">
-            Home
-          </Nav.Link>
-        </Nav>
-        <Nav>
-          {loggedInUser ? (
-            <Link to="/login">
-              <Button variant="secondary" onClick={handleLogout}>
-                LogOut
-              </Button>
-            </Link>
-          ) : (
-            <Link to="/login">
-              <Button variant="secondary">Login</Button>
-            </Link>
-          )}
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+      ) : null}
+      <div className="navbar-home-link">
+        <Link className="nav-link" to="/">
+          Home
+        </Link>
+      </div>
+
+      {loggedInUser ? (
+        <div className="navbar-links">
+          <Link className="nav-link" to={`/${loggedInUser.username}`}>
+            My Page
+          </Link>
+          <Link className="nav-link" to="/articles/add">
+            Add Article
+          </Link>
+        </div>
+      ) : (
+        <div className="navbar-links"></div>
+      )}
+
+      {loggedInUser ? (
+        <div className="navbar-log-in-out">
+          <Link className="nav-link" to="/login">
+            <button onClick={handleLogout} className="logout-button">
+              Logout
+            </button>
+          </Link>
+        </div>
+      ) : (
+        <div className="navbar-log-in-out">
+          <Link className="nav-link" to="/login">
+            Login
+          </Link>
+        </div>
+      )}
+    </div>
   );
 }
 

@@ -1,4 +1,5 @@
 import ArticlesList from "../components/Article-list";
+import Footer from "../components/Footer";
 import NavBar from "../components/Navbar";
 import Searchbar from "../components/Searchbar";
 import { useSearchParams } from "react-router-dom";
@@ -17,6 +18,7 @@ function Homepage() {
           <ArticlesList params={queryParams} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

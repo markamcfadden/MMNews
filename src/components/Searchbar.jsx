@@ -56,11 +56,11 @@ function Searchbar() {
   }
 
   return (
-    <div>
+    <div className="filter-dropdown">
       {!isLargeScreen ? (
-        <>
+        <div>
           <Button
-            variant="secondary"
+            variant="primary"
             onClick={() => setIsOpen(!isOpen)}
             aria-controls="searchbar-collapse"
             aria-expanded={open}
@@ -70,41 +70,48 @@ function Searchbar() {
           </Button>
 
           {isOpen ? (
-            <div className="filter-dropdown">
+            <div>
               <form onSubmit={handleFilters}>
-                <label>Filter by topic</label>
-                <select
-                  value={selectedTopic}
-                  onChange={(e) => setSelectedTopic(e.target.value)}
-                >
-                  <option>All topics</option>
-                  {topics.map((topic) => {
-                    return <option key={topic}>{topic}</option>;
-                  })}
-                </select>
-                <label>Sort By</label>
-                <select
-                  value={selectedSortBy}
-                  onChange={(e) => setSelectedSortBy(e.target.value)}
-                >
-                  <option>Date</option>
-                  <option>Comments</option>
-                  <option>Votes</option>
-                </select>
-                <label>Order</label>
-                <select
-                  value={selectedOrder}
-                  onChange={(e) => setSelectedOrder(e.target.value)}
-                >
-                  <option>Descending</option>
-                  <option>Ascending</option>
-                </select>
-
-                <button type="submit">Apply Filters</button>
+                <div>
+                  <label>Filter by topic</label>
+                  <select
+                    value={selectedTopic}
+                    onChange={(e) => setSelectedTopic(e.target.value)}
+                  >
+                    <option>All topics</option>
+                    {topics.map((topic) => {
+                      return <option key={topic}>{topic}</option>;
+                    })}
+                  </select>
+                </div>
+                <div>
+                  <label>Sort By</label>
+                  <select
+                    value={selectedSortBy}
+                    onChange={(e) => setSelectedSortBy(e.target.value)}
+                  >
+                    <option>Date</option>
+                    <option>Comments</option>
+                    <option>Votes</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Order</label>
+                  <select
+                    value={selectedOrder}
+                    onChange={(e) => setSelectedOrder(e.target.value)}
+                  >
+                    <option>Descending</option>
+                    <option>Ascending</option>
+                  </select>
+                </div>
+                <div>
+                  <button type="submit">Apply Filters</button>
+                </div>
               </form>
             </div>
           ) : null}
-        </>
+        </div>
       ) : (
         <div className="filter-box">
           <form onSubmit={handleFilters}>
@@ -141,7 +148,7 @@ function Searchbar() {
               <option>Ascending</option>
             </select>
 
-            <Button className="filter-box-btn" variant="secondary">
+            <Button className="filter-box-btn" variant="primary" type="submit">
               Apply Filters
             </Button>
           </form>

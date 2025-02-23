@@ -5,6 +5,7 @@ import { fetchUsers } from "../api";
 import NavBar from "../components/Navbar";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Footer from "../components/Footer";
 
 function LoginPage() {
   const { setLoggedInUser } = useContext(UserContext);
@@ -43,13 +44,14 @@ function LoginPage() {
                 }}
               />
             </Form.Group>
-            <Button variant="secondary" type="submit">
+            <Button variant="primary" type="submit">
               Login
             </Button>
           </Form>
           {error ? <p>{error}</p> : null}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
