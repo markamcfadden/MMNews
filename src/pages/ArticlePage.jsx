@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import NavBar from "../components/Navbar";
@@ -12,7 +13,7 @@ function ArticlePage() {
   const [errorMessage, setErrorMessage] = useState("");
 
   return (
-    <div>
+    <PageContainer>
       <NavBar />
       <div className="article-page">
         {!errorCode && !errorMessage ? (
@@ -29,8 +30,15 @@ function ArticlePage() {
         )}
       </div>
       <Footer />
-    </div>
+    </PageContainer>
   );
 }
 
 export default ArticlePage;
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: ${({ theme }) => theme.colors.background.default};
+`;

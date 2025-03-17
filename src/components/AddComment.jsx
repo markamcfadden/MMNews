@@ -1,8 +1,6 @@
+import styled from "styled-components";
 import { UserContext } from "../UserContext";
 import { useContext, useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import InputGroup from "react-bootstrap/InputGroup";
 import { postComment } from "../api";
 
 function AddComment({ article_id, setComments }) {
@@ -51,37 +49,93 @@ function AddComment({ article_id, setComments }) {
   }
 
   return (
-    <Form className="comment-box">
-      <InputGroup>
-        <Form.Control
-          as="textarea"
-          rows={isExpanded ? 3 : 1}
-          placeholder="Write a comment..."
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          onFocus={() => setIsExpanded(true)}
-        />
-      </InputGroup>
-      {error ? <p>{error}</p> : null}
-      {successMessage ? <p>{successMessage}</p> : null}
+    <StyledForm>
+      <TextArea
+        rows={isExpanded ? 3 : 1}
+        placeholder="Write a comment..."
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+        onFocus={() => setIsExpanded(true)}
+      />
+
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
 
       {isExpanded && (
-        <div>
-          <Button
-            variant="secondary"
+        <ButtonContainer>
+          <StyledButton
             type="submit"
             onClick={handleSubmit}
             disabled={comment.length < 1 || isSubmitting}
           >
             Comment
-          </Button>
-          <Button variant="secondary" onClick={handleCancel}>
-            Cancel
-          </Button>
-        </div>
+          </StyledButton>
+          <StyledButton onClick={handleCancel}>Cancel</StyledButton>
+        </ButtonContainer>
       )}
-    </Form>
+    </StyledForm>
   );
 }
 
 export default AddComment;
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 80%;
+`;
+
+const TextArea = styled.textarea`
+  width: 100%;
+  padding: 0.75rem;
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  border: 1px solid ${({ theme }) => theme.colors.border.light};
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  background-color: ${({ theme }) => theme.colors.background.paper};
+  color: ${({ theme }) => theme.colors.text.primary};
+  box-sizing: border-box;
+  height: 100px;
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.primary.main};
+    box-shadow: 0 0 5px ${({ theme }) => theme.colors.primary.main};
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+`;
+
+const StyledButton = styled.button`
+  padding: 0.75rem;
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  background-color: ${({ theme }) => theme.colors.primary.main};
+  color: ${({ theme }) => theme.colors.text.contrastText};
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary.light};
+  }
+
+  &:focus {
+    outline: none;
+  }
+  width: 50%;
+`;
+
+const ErrorMessage = styled.p`
+  color: ${({ theme }) => theme.colors.status.error};
+  font-size: 0.9rem;
+`;
+
+const SuccessMessage = styled.p`
+  color: ${({ theme }) => theme.colors.status.success};
+  font-size: 0.9rem;
+`;

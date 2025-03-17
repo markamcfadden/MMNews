@@ -1,7 +1,8 @@
+import styled from "styled-components";
 import { useState } from "react";
 import CommentCard from "./CommentCard";
 import AddComment from "./AddComment";
-import Button from "react-bootstrap/Button";
+
 import Spinner from "react-bootstrap/Spinner";
 import { fetchCommentsByArticleId } from "../api";
 
@@ -33,11 +34,11 @@ function CommentsList({ article_id }) {
   }
 
   return (
-    <div>
+    <CommentsListContainer>
       <AddComment article_id={article_id} setComments={setComments} />
-      <Button variant="secondary" onClick={showHideComments}>
+      <CommentsButton variant="secondary" onClick={showHideComments}>
         {showComments ? "Hide Comments" : "Show Comments"}
-      </Button>
+      </CommentsButton>
 
       {error ? <p>{error}</p> : null}
 
@@ -67,8 +68,38 @@ function CommentsList({ article_id }) {
           )}
         </div>
       ) : null}
-    </div>
+    </CommentsListContainer>
   );
 }
 
 export default CommentsList;
+
+const CommentsListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+`;
+
+const CommentsButton = styled.button`
+  width: 80%;
+  padding: 0.75rem;
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  background-color: ${({ theme }) => theme.colors.primary.main};
+  color: ${({ theme }) => theme.colors.text.contrastText};
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary.light};
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  margin-top: 15px;
+  margin-bottom: 15px;
+`;

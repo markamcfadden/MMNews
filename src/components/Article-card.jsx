@@ -36,7 +36,7 @@ function ArticleCard({
             <FaComment />
             {comment_count}
           </MetaBox>
-          {loggedInUser.username === author ? (
+          {loggedInUser && loggedInUser.username === author ? (
             <MetaBox>
               <ArticleTrashCan author={author} article_id={article_id} />
             </MetaBox>

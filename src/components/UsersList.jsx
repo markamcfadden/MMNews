@@ -36,7 +36,6 @@ const UsersContainer = styled.div`
   justify-content: center;
   padding: 20px;
   max-width: 900px;
-  margin: auto;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
