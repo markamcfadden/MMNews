@@ -12,7 +12,7 @@ function NavBar() {
   return (
     <div className="navbar">
       <div className="header-nav">
-        <h1>TartanTalk</h1>
+        <h1>MMNews</h1>
       </div>
       {loggedInUser ? (
         <div className="nav-user-info">
@@ -32,8 +32,8 @@ function NavBar() {
 
       {loggedInUser ? (
         <div className="navbar-links">
-          <Link className="nav-link" to={`/${loggedInUser.username}`}>
-            My Page
+          <Link className="nav-link" to={`/community`}>
+            Community
           </Link>
           <Link className="nav-link" to="/articles/add">
             Add Article
