@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { useState, useEffect } from "react";
 import ArticleCard from "./Article-card";
 import { fetchArticles } from "../api";
@@ -29,7 +30,7 @@ function ArticlesList({ params }) {
   }
 
   return (
-    <div className="grid-container">
+    <ArticlesListContainer>
       {articles.map((article) => (
         <ArticleCard
           key={article.article_id}
@@ -46,8 +47,18 @@ function ArticlesList({ params }) {
           comment_count={article.comment_count}
         />
       ))}
-    </div>
+    </ArticlesListContainer>
   );
 }
 
 export default ArticlesList;
+
+const ArticlesListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  padding: ${({ theme }) => theme.spacing.xss};
+  gap: ${({ theme }) => theme.spacing.md};
+`;

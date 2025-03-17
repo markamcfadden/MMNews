@@ -27,7 +27,9 @@ function NavBar() {
           <StyledLink to="/articles/add">Add Article</StyledLink>
         )}
         {loggedInUser ? (
-          <StyledLink onClick={handleLogout}>Logout</StyledLink>
+          <StyledLink onClick={handleLogout} to="/">
+            Logout
+          </StyledLink>
         ) : (
           <StyledLink to="/login">Login</StyledLink>
         )}

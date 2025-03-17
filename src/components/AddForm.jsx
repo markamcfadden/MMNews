@@ -90,18 +90,20 @@ function AddForm() {
 export default AddForm;
 
 const FormContainer = styled.div`
-  width: 100%;
-  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 400px;
   margin: auto;
   padding: 20px;
-  background: #f8f9fa;
+  background-color: ${({ theme }) => theme.colors.background.paper};
+  border: 1px solid ${({ theme }) => theme.colors.border.light};
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 const FormTitle = styled.h2`
   text-align: center;
-  color: #333;
 `;
 
 const Form = styled.form`
@@ -138,7 +140,7 @@ const Select = styled.select`
 
 const Button = styled.button`
   padding: 10px;
-  background: #007bff;
+  background: ${({ theme }) => theme.colors.primary.main};
   color: white;
   font-size: 16px;
   border: none;

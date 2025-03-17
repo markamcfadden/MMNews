@@ -17,7 +17,8 @@ const Card = styled(Link)`
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  background: white;
+  background: ${({ theme }) => theme.colors.secondary.light};
+  border: 1px solid ${({ theme }) => theme.colors.border.light};
   padding: 16px;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -41,5 +42,4 @@ const Avatar = styled.img`
 const Username = styled.p`
   font-size: 1rem;
   font-weight: bold;
-  color: #333;
 `;

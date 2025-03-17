@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import ArticlesList from "../components/Article-list";
 import Footer from "../components/Footer";
 import NavBar from "../components/Navbar";
@@ -8,19 +9,20 @@ function Homepage() {
   const [searchParams] = useSearchParams();
   const queryParams = Object.fromEntries(searchParams.entries());
   return (
-    <div>
+    <PageContainer>
       <NavBar />
-      <div className="homepage-main">
-        <div className="homepage-search">
-          <Searchbar />
-        </div>
-        <div className="homepage-list">
-          <ArticlesList params={queryParams} />
-        </div>
-      </div>
+      <Searchbar />
+      <ArticlesList params={queryParams} />
       <Footer />
-    </div>
+    </PageContainer>
   );
 }
 
 export default Homepage;
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: ${({ theme }) => theme.colors.background.default};
+`;
