@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import Footer from "../components/Footer";
 import NavBar from "../components/Navbar";
 import { useParams } from "react-router-dom";
@@ -8,7 +9,6 @@ import UsersArticles from "../components/UsersArticles";
 
 function UsersPage() {
   const { username } = useParams();
-  console.log(username);
   const [user, setUser] = useState([]);
 
   useEffect(() => {
@@ -17,14 +17,24 @@ function UsersPage() {
     });
   }, []);
 
+  console.log(">>>>>>", user);
+
   return (
-    <div>
+    <PageContainer>
       <NavBar />
       <UserCard username={user.username} avatar_url={user.avatar_url} />
       <UsersArticles username={user.username} />
       <Footer />
-    </div>
+    </PageContainer>
   );
 }
 
 export default UsersPage;
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: ${({ theme }) => theme.colors.background.default};
+`;

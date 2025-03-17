@@ -1,7 +1,7 @@
-import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { fetchTopics } from "../api";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 function Searchbar() {
   const [topics, setTopics] = useState([]);
@@ -28,27 +28,14 @@ function Searchbar() {
   function handleFilters(e) {
     e.preventDefault();
     let sort_by;
-    if (selectedSortBy === "Date") {
-      sort_by = "created_at";
-    } else if (selectedSortBy === "Votes") {
-      sort_by = "votes";
-    } else if (selectedSortBy === "Comments") {
-      sort_by = "comment_count";
-    }
+    if (selectedSortBy === "Date") sort_by = "created_at";
+    if (selectedSortBy === "Votes") sort_by = "votes";
+    if (selectedSortBy === "Comments") sort_by = "comment_count";
 
-    let order;
-    if (selectedOrder === "Ascending") {
-      order = "asc";
-    } else if (selectedOrder === "Descending") {
-      order = "desc";
-    }
+    let order = selectedOrder === "Ascending" ? "asc" : "desc";
 
     const params = new URLSearchParams();
-
-    if (selectedTopic && selectedTopic !== "All Topics") {
-      params.append("topic", selectedTopic);
-    }
-
+    if (selectedTopic !== "All Topics") params.append("topic", selectedTopic);
     params.append("sort_by", sort_by);
     params.append("order", order);
 
@@ -56,106 +43,194 @@ function Searchbar() {
   }
 
   return (
-    <div className="filter-dropdown">
+    <FilterContainer>
       {!isLargeScreen ? (
-        <div>
-          <Button
-            variant="primary"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-controls="searchbar-collapse"
-            aria-expanded={open}
-            className="d-xl-none mb-3 secondary"
-          >
+        <>
+          <ToggleButton onClick={() => setIsOpen(!isOpen)}>
             Filter Articles
-          </Button>
+          </ToggleButton>
 
-          {isOpen ? (
-            <div>
+          {isOpen && (
+            <DropdownMenu>
               <form onSubmit={handleFilters}>
-                <div>
+                <DropdownItem>
                   <label>Filter by topic</label>
-                  <select
+                  <StyledSelect
                     value={selectedTopic}
                     onChange={(e) => setSelectedTopic(e.target.value)}
                   >
-                    <option>All topics</option>
-                    {topics.map((topic) => {
-                      return <option key={topic}>{topic}</option>;
-                    })}
-                  </select>
-                </div>
-                <div>
+                    <option>All Topics</option>
+                    {topics.map((topic) => (
+                      <option key={topic}>{topic}</option>
+                    ))}
+                  </StyledSelect>
+                </DropdownItem>
+
+                <DropdownItem>
                   <label>Sort By</label>
-                  <select
+                  <StyledSelect
                     value={selectedSortBy}
                     onChange={(e) => setSelectedSortBy(e.target.value)}
                   >
                     <option>Date</option>
                     <option>Comments</option>
                     <option>Votes</option>
-                  </select>
-                </div>
-                <div>
+                  </StyledSelect>
+                </DropdownItem>
+
+                <DropdownItem>
                   <label>Order</label>
-                  <select
+                  <StyledSelect
                     value={selectedOrder}
                     onChange={(e) => setSelectedOrder(e.target.value)}
                   >
                     <option>Descending</option>
                     <option>Ascending</option>
-                  </select>
-                </div>
-                <div>
-                  <button type="submit">Apply Filters</button>
-                </div>
+                  </StyledSelect>
+                </DropdownItem>
+
+                <ApplyButton type="submit">Apply Filters</ApplyButton>
               </form>
-            </div>
-          ) : null}
-        </div>
+            </DropdownMenu>
+          )}
+        </>
       ) : (
-        <div className="filter-box">
+        <FilterBox>
           <form onSubmit={handleFilters}>
-            <label className="filter-box-label">Filter by topic</label>
-            <select
-              className="filter-box-select"
-              value={selectedTopic}
-              onChange={(e) => setSelectedTopic(e.target.value)}
-            >
-              <option>All Topics</option>
-              {topics.map((topic) => {
-                return <option key={topic}>{topic}</option>;
-              })}
-            </select>
+            <FilterGroup>
+              <FormLabel>Filter by topic</FormLabel>
+              <StyledSelect
+                value={selectedTopic}
+                onChange={(e) => setSelectedTopic(e.target.value)}
+              >
+                <Option>All Topics</Option>
+                {topics.map((topic) => (
+                  <option key={topic}>{topic}</option>
+                ))}
+              </StyledSelect>
+            </FilterGroup>
 
-            <label className="filter-box-label">Sort By</label>
-            <select
-              className="filter-box-select"
-              value={selectedSortBy}
-              onChange={(e) => setSelectedSortBy(e.target.value)}
-            >
-              <option>Date</option>
-              <option>Comments</option>
-              <option>Votes</option>
-            </select>
+            <FilterGroup>
+              <FormLabel>Sort By</FormLabel>
+              <StyledSelect
+                value={selectedSortBy}
+                onChange={(e) => setSelectedSortBy(e.target.value)}
+              >
+                <Option>Date</Option>
+                <Option>Comments</Option>
+                <Option>Votes</Option>
+              </StyledSelect>
+            </FilterGroup>
 
-            <label className="filter-box-label">Order</label>
-            <select
-              className="filter-box-select"
-              value={selectedOrder}
-              onChange={(e) => setSelectedOrder(e.target.value)}
-            >
-              <option>Descending</option>
-              <option>Ascending</option>
-            </select>
+            <FilterGroup>
+              <FormLabel>Order</FormLabel>
+              <StyledSelect
+                value={selectedOrder}
+                onChange={(e) => setSelectedOrder(e.target.value)}
+              >
+                <Option>Descending</Option>
+                <Option>Ascending</Option>
+              </StyledSelect>
+            </FilterGroup>
 
-            <Button className="filter-box-btn" variant="primary" type="submit">
-              Apply Filters
-            </Button>
+            <ApplyButton type="submit">Apply Filters</ApplyButton>
           </form>
-        </div>
+        </FilterBox>
       )}
-    </div>
+    </FilterContainer>
   );
 }
 
 export default Searchbar;
+
+const FilterContainer = styled.div`
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+`;
+
+const ToggleButton = styled.button`
+  background-color: ${({ theme }) => theme.colors.primary.main};
+  color: ${({ theme }) => theme.colors.primary.contrastText};
+  border: none;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary.light};
+  }
+`;
+
+const DropdownMenu = styled.div`
+  background: ${({ theme }) => theme.colors.background.paper};
+  padding: 12px;
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+`;
+
+const DropdownItem = styled.div`
+  margin-bottom: 12px;
+`;
+
+const StyledSelect = styled.select`
+  width: 100%;
+  padding: 8px;
+  background: ${({ theme }) => theme.colors.background.default};
+  color: ${({ theme }) => theme.colors.text.primary};
+  border: 1px solid ${({ theme }) => theme.colors.border.medium};
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.primary.main};
+    box-shadow: 0 0 5px ${({ theme }) => theme.colors.primary.main};
+  }
+`;
+
+const ApplyButton = styled.button`
+  background-color: ${({ theme }) => theme.colors.primary.main};
+  color: ${({ theme }) => theme.colors.primary.contrastText};
+  border: none;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary.light};
+  }
+`;
+
+const FilterBox = styled.div`
+  background: ${({ theme }) => theme.colors.background.paper};
+  padding: 16px;
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+`;
+
+const FilterGroup = styled.div`
+  margin-bottom: 12px;
+`;
+
+const Option = styled.option`
+  font-size: 16px;
+  padding: 10px;
+`;
+
+const FormLabel = styled.label`
+  display: block;
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  margin-bottom: 0.5rem;
+  color: ${({ theme }) => theme.colors.text.primary};
+`;

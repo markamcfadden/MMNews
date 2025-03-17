@@ -36,7 +36,7 @@ function CommentsList({ article_id }) {
   return (
     <CommentsListContainer>
       <AddComment article_id={article_id} setComments={setComments} />
-      <CommentsButton variant="secondary" onClick={showHideComments}>
+      <CommentsButton onClick={showHideComments}>
         {showComments ? "Hide Comments" : "Show Comments"}
       </CommentsButton>
 

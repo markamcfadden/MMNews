@@ -28,6 +28,7 @@ const Card = styled(Link)`
   &:hover {
     transform: scale(1.05);
   }
+  margin-bottom: 15px;
 `;
 
 const Avatar = styled.img`
