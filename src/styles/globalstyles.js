@@ -12,9 +12,14 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.colors.text.primary};
     font-family: ${({ theme }) => theme.typography.fontFamily};
     font-size: ${({ theme }) => theme.typography.fontSize.md};
-    min-height: 100vh;
-    padding: ${({ theme }) => theme.spacing.md}
+    padding: ${({ theme }) => theme.spacing.md};
+    display:flex;
+    flex-direction: column;
+    height: 100vh;
   }
+
+  main {
+  flex-grow: 1}
 
   h1, h2, h3, h4, h5, h6 {
     font-weight: ${({ theme }) => theme.typography.fontWeight.bold};

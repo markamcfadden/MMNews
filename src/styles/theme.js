@@ -1,26 +1,26 @@
 const theme = {
   colors: {
     primary: {
-      main: "#28a745",
-      light: "#48c76a",
-      dark: "#1e7e34",
-      contrastText: "#ffffff",
+      main: "#28a745", //green
+      light: "#48c76a", //light green
+      dark: "#1e7e34", // dark green
+      contrastText: "#ffffff", //white
     },
     secondary: {
-      main: "#1c1c1c",
-      light: "#2d2d2d",
-      dark: "#121212",
-      contrastText: "#ffffff",
+      main: "#1c1c1c", //very dark grey
+      light: "#2d2d2d", //dark grey
+      dark: "#121212", //almost black
+      contrastText: "#ffffff", //white
     },
     accent: {
-      main: "#3b82f6",
-      hover: "#2563eb",
+      main: "#3b82f6", //blue
+      hover: "#2563eb", //darker blue
     },
     status: {
-      success: "#28a745",
-      warning: "#ffc107",
-      error: "#dc3545",
-      info: "#17a2b8",
+      success: "#28a745", //green
+      warning: "#ffc107", //yellow
+      error: "#dc3545", //red
+      info: "#17a2b8", //cyan
     },
     background: {
       default: "#121212",
@@ -31,7 +31,7 @@ const theme = {
       primary: "#e5e5e5",
       secondary: "#a3a3a3",
       disabled: "#555555",
-      light: "#ffffff",
+      light: "#ffffff", //white
     },
     border: {
       light: "#4b5563",
