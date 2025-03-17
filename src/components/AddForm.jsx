@@ -113,43 +113,73 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  border: 1px solid ${({ theme }) => theme.colors.border.light};
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  background-color: ${({ theme }) => theme.colors.background.paper};
+  color: ${({ theme }) => theme.colors.text.primary};
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.primary.main};
+    box-shadow: 0 0 5px ${({ theme }) => theme.colors.primary.main};
+  }
 `;
 
 const TextArea = styled.textarea`
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  resize: none;
-  height: 120px;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  border: 1px solid ${({ theme }) => theme.colors.border.light};
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  background-color: ${({ theme }) => theme.colors.background.paper};
+  color: ${({ theme }) => theme.colors.text.primary};
+  box-sizing: border-box;
+  height: 180px;
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.primary.main};
+    box-shadow: 0 0 5px ${({ theme }) => theme.colors.primary.main};
+  }
 `;
 
 const Select = styled.select`
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  background-color: white;
-  appearance: none;
-  cursor: pointer;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  border: 1px solid ${({ theme }) => theme.colors.border.light};
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  background-color: ${({ theme }) => theme.colors.background.paper};
+  color: ${({ theme }) => theme.colors.text.primary};
+  box-sizing: border-box;
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.primary.main};
+    box-shadow: 0 0 5px ${({ theme }) => theme.colors.primary.main};
+  }
 `;
 
 const Button = styled.button`
-  padding: 10px;
-  background: ${({ theme }) => theme.colors.primary.main};
-  color: white;
-  font-size: 16px;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  background-color: ${({ theme }) => theme.colors.primary.main};
+  color: ${({ theme }) => theme.colors.text.contrastText};
   border: none;
-  border-radius: 5px;
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
   cursor: pointer;
-  transition: 0.3s;
+  transition: background-color 0.3s ease;
 
   &:hover {
-    background: #0056b3;
+    background-color: ${({ theme }) => theme.colors.primary.light};
+  }
+
+  &:focus {
+    outline: none;
   }
 `;
 

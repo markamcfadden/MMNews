@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import Footer from "../components/Footer";
 import AddForm from "../components/AddForm";
 import NavBar from "../components/Navbar";
