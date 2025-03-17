@@ -16,9 +16,25 @@ export const fetchArticleById = (article_id) => {
   });
 };
 
+export const fetchArticlesByUsername = (username) => {
+  return MMNews.get("/articles").then((response) => {
+    const articles = response.data.articles;
+    const articlesByUser = articles.filter(
+      (article) => article.author === username
+    );
+    return articlesByUser;
+  });
+};
+
 export const fetchCommentsByArticleId = (article_id) => {
   return MMNews.get(`/articles/${article_id}/comments`).then((response) => {
     return response.data.comments;
+  });
+};
+
+export const fetchUserByUsername = (username) => {
+  return MMNews.get(`/users/${username}`).then((response) => {
+    return response.data.user;
   });
 };
 
@@ -31,6 +47,12 @@ export const fetchUsers = (username) => {
     } else {
       throw new Error();
     }
+  });
+};
+
+export const fetchAllUsers = () => {
+  return MMNews.get("/users").then((response) => {
+    return response.data.users;
   });
 };
 
