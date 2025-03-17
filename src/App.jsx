@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import NotFound from "./components/NotFound";
 import UsersPage from "./pages/UsersPage";
 import AddArticlePage from "./pages/AddArticlePage";
+import CommunityPage from "./pages/CommunityPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/article/:article_id" element={<ArticlePage />}></Route>
           <Route path="/search/" element={<Homepage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/community" element={<CommunityPage />}></Route>
           <Route path="/:username" element={<UsersPage />}></Route>
           <Route path="/articles/add" element={<AddArticlePage />}></Route>
           <Route path="*" element={<NotFound />}></Route>
