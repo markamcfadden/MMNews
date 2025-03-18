@@ -72,6 +72,9 @@ const WelcomeMessage = styled.p`
 `;
 
 const NavLinks = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   padding-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 

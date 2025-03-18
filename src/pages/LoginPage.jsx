@@ -107,7 +107,7 @@ const SubmitButton = styled.button`
   padding: 0.75rem;
   font-size: ${({ theme }) => theme.typography.fontSize.md};
   background-color: ${({ theme }) => theme.colors.primary.main};
-  color: ${({ theme }) => theme.colors.text.contrastText};
+  color: ${({ theme }) => theme.colors.text.primary};
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius.medium};
   cursor: pointer;
