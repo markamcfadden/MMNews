@@ -1,24 +1,37 @@
-Tartan Talk
-🔗 Live Link
-https://tartantalk.netlify.app/
+MMNews 📰
+🔗 Live Site:
+https://mmnews.netlify.app/
 
-Tartan Talk is a news articles app where users can read, filter, and sort articles. Users can also log in to comment, vote on and submit new articles. To sign in please use one of the following usernames, [tickle122, grumpy19, happyamy2016, cooljmessy, weegembump, jessjelly].
+MMNews is a dynamic news articles app where users can: ✅ Read, filter, and sort articles
+✅ Log in, post comments, and vote
+✅ Submit new articles
 
-Tech Used;
-Frontend: React, Vite, React Router, Bootstrap.
-Backend: Express API.
+💬 Test Users:
+To sign in, use one of the following usernames: tickle122, grumpy19, happyamy2016, cooljmessy, weegembump, jessjelly
 
-How to Run the Project;
+🚀 Tech Stack
+Frontend:
+React 19
+Vite
+React Router v7
+Styled Components
 
-You will need Node.js installed v23.3+
-Clone the project by running git clone https://github.com/markamcfadden/TartanTalk.git
-Cd TartanTalk
-Run npm install to install dependencies.
-To start the project run npm dev.
-You can open in your browser http://localhost:5173
+Backend:
+Express REST API (Backend Repo)
 
-🔗 Backend Link
-The backend is a separate project. Check it out here:
+💻 Getting Started - Run Locally
+Prerequisites:
+Node.js v23.3+ installed
+Clone & Run:
+git clone https://github.com/markamcfadden/TartanTalk.git
+cd TartanTalk
+npm install
+npm run dev
+Open your browser at: http://localhost:5173
+
+🔗 Backend Repository
+The backend is a separate project, check it out here:
 https://github.com/markamcfadden/be-nc-news-project
 
+📚 Notes
 This project was created during a Digital Skills Bootcamp at Northcoders.
